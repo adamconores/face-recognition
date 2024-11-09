@@ -4,7 +4,7 @@
 
 **Adam Conores**  
 Google Account: [adamconores@gmail.com](mailto:adamconores@gmail.com)  
-GitHub: [github-profile-link](https://github.com/adamconores)
+GitHub: [Adam Conores](https://github.com/adamconores)
 
 ## Overview
 
