@@ -4,10 +4,9 @@ from pathlib import Path
 
 import argparse
 import asyncio
-import cv2
 
 
-async def main(args):
+async def main(args: argparse._ArgumentParserT) -> None:
     """
     Main function to handle command-line arguments and execute corresponding functions.
     
@@ -63,7 +62,7 @@ async def main(args):
         print("No valid command provided. Use --train, --save, --load, or --recognize.")
 
 
-def parse_args():
+def parse_args() -> argparse._ArgumentParserT:
     """
     Parse and return command-line arguments.
     

@@ -4,7 +4,7 @@ import cv2
 
 # Telegram bot configuration
 TOKEN = "YOUR TOKEN"  # Telegram bot token for communication
-TG_CHAT_ID = "YOUR CHAT ID"  # Chat ID for sending messages to a specific Telegram chat
+TG_CHAT_ID = "CHAT ID"  # Chat ID for sending messages to a specific Telegram chat
 UNKNOWN_TIMEOUT = 1  # Time interval (in minutes) to wait before considering a person unknown again
 
 # Frame processing configuration

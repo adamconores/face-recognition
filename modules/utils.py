@@ -9,12 +9,13 @@ import aiofiles
 import asyncio
 import pickle
 import cv2
+import numpy as np
 
 
 bot = Bot(token=TOKEN)
 
 
-async def process_video_stream():
+async def process_video_stream() -> None:
     """Process real-time video stream and recognize faces."""
     target = True
     recent_time = datetime.now().minute
@@ -74,7 +75,8 @@ async def process_video_stream():
     cv2.destroyAllWindows()
 
 
-async def resize_face(image, size: tuple = DEFAULT_IMAGE_SIZE):
+async def resize_face(image: np.ndarray, 
+                      size: tuple = DEFAULT_IMAGE_SIZE) -> np.ndarray:
     """Resize face image to the specified size."""
     print(type(image))
     return cv2.resize(image, size)
@@ -113,12 +115,15 @@ async def load() -> dict:
     return {}
 
 
-async def save(image: Path = None, person: str = "", folder: Path = None, fullpath: bool = False) -> None:
+async def save(image: Path = None, 
+               person: str = "", 
+               folder: Path = None, 
+               fullpath: bool = False) -> None:
     """Asynchronously save new face encodings."""
     encodings = await load()  # First, asynchronously load existing encodings
 
     # Function to process image and get encoding
-    async def process_image(img_path):
+    async def process_image(img_path: Path) -> None:
         image = await resize_face(face_recognition.load_image_file(img_path))
         encoding = await get_face_encodings(image)  # await async call directly
         if encoding:
@@ -145,7 +150,8 @@ async def save(image: Path = None, person: str = "", folder: Path = None, fullpa
     print(f"New encodings for {person} have been saved.")
 
 
-async def display_face(image, face_locations: list, name: str):
+async def display_face(image: np.ndarray, 
+                       face_locations: list, name: str) -> np.ndarray:
     """
     Display the image with rectangles drawn around faces and names labeled below,
     using configurable parameters for rectangle and text properties.
@@ -166,12 +172,13 @@ async def display_face(image, face_locations: list, name: str):
     return image
 
 
-async def get_face_locations(image, model: str = "hog") -> list:
+async def get_face_locations(image: np.ndarray, 
+                             model: str = "hog") -> list:
     """Return the locations of faces in the image."""
     return face_recognition.face_locations(image, model=model)
 
 
-async def get_face_encodings(image) -> list:
+async def get_face_encodings(image: np.ndarray) -> list:
     """Return the encodings of faces in the image."""
     return face_recognition.face_encodings(image, await get_face_locations(image, model=DEFAULT_MODEL))
 
