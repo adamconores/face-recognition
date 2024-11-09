@@ -6,7 +6,7 @@ import argparse
 import asyncio
 
 
-async def main(args: argparse._ArgumentParserT) -> None:
+async def main(args: argparse.ArgumentParser) -> None:
     """
     Main function to handle command-line arguments and execute corresponding functions.
     
@@ -62,7 +62,7 @@ async def main(args: argparse._ArgumentParserT) -> None:
         print("No valid command provided. Use --train, --save, --load, or --recognize.")
 
 
-def parse_args() -> argparse._ArgumentParserT:
+def parse_args() -> argparse.ArgumentParser:
     """
     Parse and return command-line arguments.
     

@@ -62,13 +62,17 @@ async def process_video_stream() -> None:
         cv2.imshow('Video', frame)
 
         # Capture image or exit conditions
-        if cv2.waitKey(1) & 0xFF == ord(' '):
-            img_name = input("Enter image name: ")
-            cv2.imwrite(f"tmp/{img_name}.jpg", d_frame) if img_name else cv2.imwrite(f"tmp/{datetime.now().now()}.jpg", d_frame)
-            break
-        # Break loop with 'q' key
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            img_name = input("Enter image name(leave blank if you won't): ")
+            if img_name:
+                cv2.imwrite(f"tmp/{img_name}.jpg", frame)
             break
+
+        # if cv2.waitKey(1) & 0xFF == ord('s'):
+        #     img_name = input("Enter image name: ")
+        #     cv2.imwrite(f"tmp/{img_name}.jpg", d_frame) if img_name else cv2.imwrite(f"tmp/{datetime.now().now()}.jpg", d_frame)
+        #     break
+        # # Break loop with 'q' key
 
     # Release video capture and close windows
     video_capture.release()
